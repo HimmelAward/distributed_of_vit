@@ -13,5 +13,6 @@ Vit分布式训练的实现
 对于ViT模型的分布式训练，我们可以使用数据并行的架构。具体来说，我们将整个数据集分成若干个小批次，每个计算节点负责处理一部分批次的数据。每个节点使用自己的数据来训练模型，并将训练得到的参数和梯度发送给其他节点。最终，我们通过梯度聚合的方法来更新全局模型。
 
 >对应数据需要预先运行pre_trainer.py进行预训练fine-tuning，在运行main.py。
->如果用其他数据，请修改dataset里面的函数。
-
+>如果用其他数据，请修改dataset.py里面的函数。<br>
+  ```torchrun --standalone -nproc-per-node=gpu pre_trainer.py```<br>
+  ```python main.py```
